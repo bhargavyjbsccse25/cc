@@ -84,3 +84,45 @@ Type -Title aur description Create Pull Request
 9- Review & Merge (done by owner) 
 
 
+
+
+Steps for merge conflict
+1. mkdir merge-demo
+2. cd merge-demo
+3. git init
+
+Create Initial file and commit-
+4. echo Once upon a time, there was a coder. > story.txt
+5. git add story.txt
+6. git commit -m "Initial commit"
+
+Create branch A and change the original line
+7. git checkout -b feature-A
+8. echo Once upon a time, there was a coder.They loved working with Git. > story.txt
+9. git add story.txt
+10. git commit -m "Feature A change"
+Return to main
+11. git checkout master
+Create Branch B and change the same line differently
+12. git checkout -b feature-B
+13. echo Once upon a time, there was a coder. They enjoyed solving puzzles. > story.txt
+14. git add story.txt
+15. git commit -m "Feature B change"
+Merge to create conflict
+16. git checkout master
+17. git merge feature-A
+18. git merge feature-B
+Now open file and resolve conflict manually
+19. notepad story.txt
+20. Replace the
+<<<<<<< HEAD
+They loved working with Git.
+=======
+They enjoyed solving puzzles.
+>>>>>>> feature-B
+with the entire text with any content of your choice.
+21. Save and the close the file manually
+Final Commit
+22. git add story.txt
+23. git commit -m "Resolved merge conflict"
+
